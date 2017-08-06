@@ -39,11 +39,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   | Ins  | Caps | Left | Right| MO(2)|                                       | MO(2)| Down |  Up  | PgDn | PgUp  |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        |QCopy | Ralt |       | Ralt |QPaste|
- *                                 ,------|------|------|       |------+------+------.
- *                                 |      |      | Home |       | End  |      |      |
- *                                 | Space| Ctrl |------|       |------| Ctrl |Enter |
- *                                 |      |      | LAlt |       | LAlt |      |      |
+ *                                        | App  | LGui |       | Alt  | LGui   |
+ *                                 ,------|------|------|       |------+--------+------.
+ *                                 |      |      | Home |       | End  |        |      |
+ *                                 | Space| Back |------|       |------| Ctrl   |Enter |
+ *                                 |      |      | Hype |       | Mehe |        |      |
  *                                 `--------------------'       `--------------------'
  */
   // If it accepts an argument (i.e, is a function), it doesn't need KC_.
@@ -55,9 +55,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,         FR_A,         KC_R,   KC_S,   KC_T,   KC_G,
         KC_LSFT,        FR_Z,         KC_X,   KC_C,   KC_D,   KC_V,   TO(SYMB),
         KC_INS,         KC_CAPS,      KC_LEFT,KC_RIGHT, MO(SYMB),
-                                               M(QCOPY),          KC_RALT,
+                                               ALT_T(KC_APP),  KC_LGUI,
                                                                   KC_HOME,
-                                               KC_SPC,KC_LCTRL,   KC_LALT,
+                                               KC_SPC, KC_BSPC,   ALL_T(KC_NO),
         // right hand
         KC_TRNS,     KC_6,    KC_7,   KC_8,     KC_9,    KC_0,             KC_TRNS,
         TO(MDIA),    KC_J,    KC_L,   KC_U,     KC_Y,    FR_SCLN,          KC_TRNS,
@@ -65,9 +65,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         OSL(ACC),    KC_K,    KC_H,   FR_COMM,  FR_DOT,  FR_COLN,          KC_RSFT,
         MO(SYMB),    KC_DOWN, KC_UP,  KC_PGDN,  KC_PGUP,
 
-        KC_RALT,        M(QPASTE),
+        KC_LALT,        KC_LGUI,
         KC_END,
-        KC_LALT,KC_RCTL, KC_ENT
+        MEH_T(KC_NO),KC_RCTL, KC_ENT
                   ),
 
 
