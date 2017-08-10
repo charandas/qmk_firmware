@@ -5,25 +5,9 @@
 #include "keymap_french.h"
 
 #define BASE 0 // default Colemak Mod-DH layer
-#define SYMB 1 // symbols
-#define MDIA 2 // media keys
-#define QWERTY 3 // qwerty
-#define QWERTY_SYMB 4 // symbols
-
-#define QCOPY 0 // Qubes OS VM to VM copy
-#define QPASTE 1 // Qubes OS VM to VM paste
-#define M_ACIRC 2 // â
-#define M_ECIRC 3 // ê
-#define M_ICIRC 4 // î
-#define M_OCIRC 5 // ô
-#define M_UCIRC 6 // û
-#define M_YCIRC 7 // ŷ
-#define M_AUMLT 8 // ä
-#define M_EUMLT 9 // ë
-#define M_IUMLT 10 // ï
-#define M_OUMLT 11 // ö
-#define M_UUMLT 12 // ü
-#define M_YUMLT 13 // ÿ
+#define QWERTY 1 // qwerty
+#define SYMB 2 // symbols
+#define MDIA 3 // media keys
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Base Colemak Mod-DH layer
@@ -52,27 +36,68 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [BASE] = KEYMAP(  // layer 0 : default
         // left hand
         KC_ESC,         KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   KC_TRNS,
-        KC_TRNS,        FR_Q,         FR_W,   KC_F,   KC_P,   KC_B,   TO(BASE),
-        KC_TAB,         FR_A,         KC_R,   KC_S,   KC_T,   KC_G,
-        KC_LSFT,        FR_Z,         KC_X,   KC_C,   KC_D,   KC_V,   TO(SYMB),
+        KC_TRNS,        KC_Q,         KC_W,   KC_F,   KC_P,   KC_B,   TO(BASE),
+        KC_TAB,         KC_A,         KC_R,   KC_S,   KC_T,   KC_G,
+        KC_LSFT,        KC_Z,         KC_X,   KC_C,   KC_D,   KC_V,   TO(SYMB),
         KC_INS,         KC_CAPS,      KC_LEFT,KC_RIGHT, MO(SYMB),
                                                ALT_T(KC_APP),  KC_LGUI,
                                                                   KC_HOME,
                                                KC_SPC, KC_BSPC,   ALL_T(KC_NO),
         // right hand
         KC_TRNS,     KC_6,    KC_7,   KC_8,     KC_9,    KC_0,             KC_TRNS,
-        TO(MDIA),    KC_J,    KC_L,   KC_U,     KC_Y,    FR_SCLN,          KC_TRNS,
-                     FR_M,    KC_N,   KC_E,     KC_I,    KC_O,             KC_BSPC,
-        TG(QWERTY),    KC_K,    KC_H,   FR_COMM,  FR_DOT,  FR_COLN,          KC_RSFT,
+        TO(MDIA),    KC_J,    KC_L,   KC_U,     KC_Y,    KC_SCLN,          KC_TRNS,
+                     KC_M,    KC_N,   KC_E,     KC_I,    KC_O,             KC_BSPC,
+        TG(QWERTY),    KC_K,    KC_H,   KC_COMM,  KC_DOT,  KC_COLN,          KC_RSFT,
         MO(SYMB),    KC_DOWN, KC_UP,  KC_PGDN,  KC_PGUP,
 
         KC_LALT,        KC_LGUI,
         KC_END,
         MEH_T(KC_NO),KC_RCTL, KC_ENT
                   ),
+/* Keymap 3: Basic layer
+ *
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * |   =    |   1  |   2  |   3  |   4  |   5  | LEFT |           | RIGHT|   6  |   7  |   8  |   9  |   0  |   -    |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * | Del    |   Q  |   W  |   E  |   R  |   T  |      |           |      |   Y  |   U  |   I  |   O  |   P  |   \    |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * | BkSp   |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |;     |  LGui  |
+ * |--------+------+------+------+------+------| Hyper|           |      |------+------+------+------+------+--------|
+ * | LShift |Z/Ctrl|   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |//Ctrl| RShift |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |      |  '"  |Left  | Right |MO(4)|                                | MO(4)| Up   |  Down|   ]  |      |
+ *   `----------------------------------'                                       `----------------------------------'
+ *                                        ,-------------.       ,-------------.
+ *                                        | App  | LGui |       | Alt  |Ctrl/Esc|
+ *                                 ,------|------|------|       |------+--------+------.
+ *                                 |      |      | Home |       | PgUp |        |      |
+ *                                 | Space|Backsp|------|       |------|  Tab   |Enter |
+ *                                 |      |ace   | End  |       | PgDn |        |      |
+ *                                 `--------------------'       `----------------------'
+ */
+ [QWERTY] = KEYMAP(  // layer 1
+  // left hand
+  KC_EQL,         KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   KC_LEFT,
+  KC_DELT,        KC_Q,         KC_W,   KC_E,   KC_R,   KC_T,   KC_TRNS,
+  KC_BSPC,        KC_A,         KC_S,   KC_D,   KC_F,   KC_G,
+  KC_LSFT,        CTL_T(KC_Z),  KC_X,   KC_C,   KC_V,   KC_B,   ALL_T(KC_NO),
+  KC_TRNS,KC_QUOT, KC_LEFT,KC_RGHT, MO(SYMB),
+                                        ALT_T(KC_APP),  KC_LGUI,
+                                                        KC_HOME,
+                                         KC_SPC,KC_BSPC,KC_END,
+  // right hand
+       KC_RGHT,     KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_MINS,
+       KC_TRNS,       KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,             KC_BSLS,
+                    KC_H,   KC_J,   KC_K,   KC_L,  KC_SCLN,KC_LGUI,
+       KC_TRNS,KC_N,   KC_M,   KC_COMM,KC_DOT, CTL_T(KC_SLSH),   KC_RSFT,
+                            MO(SYMB), KC_UP,  KC_DOWN,KC_RBRC,     KC_TRNS,
+       KC_LALT,        CTL_T(KC_ESC),
+       KC_PGUP,
+       KC_PGDN,KC_TAB, KC_ENT
+),
 
 
-/* Keymap 1: Symbol Layer
+/* Keymap 2: Symbol Layer
  * // TODO missing: ¤
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |Version |  F1  |  F2  |  F3  |  F4  |  F5  |      |           |      |  F6  |  F7  |  F8  |  F9  |  F10 |   F11  |
@@ -97,24 +122,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [SYMB] = KEYMAP(
        // left hand
        M(0),   KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_TRNS,
-       KC_TRNS,FR_SECT,FR_LESS,  FR_LCBR,FR_BSLS,FR_TILD,KC_TRNS,
-       KC_TRNS,FR_APOS,FR_EQL, FR_MINS,FR_LPRN,FR_PLUS,
-       KC_TRNS,FR_GRV,FR_QUES,FR_HASH,FR_LBRC,FR_PIPE,KC_TRNS,
-          FR_EURO,FR_PND,FR_DLR,KC_TRNS,KC_TRNS,
+       KC_TRNS,KC_TRNS,KC_LABK,  KC_LCBR,KC_BSLS,KC_TILD,KC_TRNS,
+       KC_TRNS,KC_QUOT,KC_EQL, KC_MINS,KC_LPRN,KC_PLUS,
+       KC_TRNS,KC_GRV,KC_QUES,KC_HASH,KC_LBRC,KC_PIPE,KC_TRNS,
+       KC_TRNS,KC_TRNS,KC_DLR,KC_TRNS,KC_TRNS,
                                        KC_TRNS,KC_TRNS,
                                                KC_TRNS,
                                KC_TRNS,KC_TRNS,KC_TRNS,
        // right hand
        KC_TRNS, KC_F6,   KC_F7,  KC_F8,   KC_F9,   KC_F10,  KC_F11,
-       KC_TRNS, FR_PERC, FR_AT,  FR_RCBR, FR_GRTR, FR_MU, KC_F12,
-                FR_ASTR,   FR_RPRN, FR_UNDS, FR_SLSH, FR_QUOT, KC_TRNS,
-       KC_TRNS, FR_AMP,  FR_RBRC, FR_DLR,  FR_EXLM,  FR_CIRC, KC_TRNS,
+       KC_TRNS, KC_PERC, KC_AT,  KC_RCBR, KC_RABK, KC_TRNS, KC_F12,
+       KC_ASTR,   KC_RPRN, KC_UNDS, KC_SLSH, S(KC_QUOT), KC_TRNS,
+       KC_TRNS, KC_AMPR,  KC_RBRC, KC_DLR,  KC_EXLM,  KC_CIRC, KC_TRNS,
                          KC_TRNS, KC_TRNS, KC_TRNS,  ALGR(KC_S),  KC_TRNS,
        KC_TRNS, KC_TRNS,
        KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS
 ),
-/* Keymap 2: Media and mouse keys
+/* Keymap 3: Media and mouse keys
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
@@ -155,91 +180,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,
        KC_TRNS, KC_TRNS, KC_WBAK
 ),
-
-/* Keymap 3: Basic layer
- *
- * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |   =    |   1  |   2  |   3  |   4  |   5  | LEFT |           | RIGHT|   6  |   7  |   8  |   9  |   0  |   -    |
- * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * | Del    |   Q  |   W  |   E  |   R  |   T  |      |           |      |   Y  |   U  |   I  |   O  |   P  |   \    |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | BkSp   |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |;     |  LGui  |
- * |--------+------+------+------+------+------| Hyper|           |      |------+------+------+------+------+--------|
- * | LShift |Z/Ctrl|   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |//Ctrl| RShift |
- * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |MO(4) |  '"  |AltShf| Left | Right|                                       |  Up  | Down |   [  |   ]  | MO(4)  |
- *   `----------------------------------'                                       `----------------------------------'
- *                                        ,-------------.       ,-------------.
- *                                        | App  | LGui |       | Alt  |Ctrl/Esc|
- *                                 ,------|------|------|       |------+--------+------.
- *                                 |      |      | Home |       | PgUp |        |      |
- *                                 | Space|Backsp|------|       |------|  Tab   |Enter |
- *                                 |      |ace   | End  |       | PgDn |        |      |
- *                                 `--------------------'       `----------------------'
- */
-[QWERTY] = KEYMAP(  // layer 3
-        // left hand
-        KC_EQL,         KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   KC_LEFT,
-        KC_DELT,        KC_Q,         KC_W,   KC_E,   KC_R,   KC_T,   KC_TRNS,
-        KC_BSPC,        KC_A,         KC_S,   KC_D,   KC_F,   KC_G,
-        KC_LSFT,        CTL_T(KC_Z),  KC_X,   KC_C,   KC_V,   KC_B,   ALL_T(KC_NO),
-        MO(QWERTY_SYMB),KC_QUOT,      LALT(KC_LSFT),  KC_LEFT,KC_RGHT,
-                                              ALT_T(KC_APP),  KC_LGUI,
-                                                              KC_HOME,
-                                               KC_SPC,KC_BSPC,KC_END,
-        // right hand
-             KC_RGHT,     KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_MINS,
-             KC_TRNS,       KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,             KC_BSLS,
-                          KC_H,   KC_J,   KC_K,   KC_L,  KC_SCLN,KC_LGUI,
-             KC_TRNS,KC_N,   KC_M,   KC_COMM,KC_DOT, CTL_T(KC_SLSH),   KC_RSFT,
-                                  KC_UP,  KC_DOWN,KC_LBRC,KC_RBRC,     MO(QWERTY_SYMB),
-             KC_LALT,        CTL_T(KC_ESC),
-             KC_PGUP,
-             KC_PGDN,KC_TAB, KC_ENT
-    ),
-
-/* Keymap 4: Symbol Layer
- *
- * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |        |  F1  |  F2  |  F3  |  F4  |  F5  |      |           |      |  F6  |  F7  |  F8  |  F9  |  F10 |   F11  |
- * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |        |   !  |   @  |   {  |   }  |   |  |      |           |      |   Up |   7  |   8  |   9  |   *  |   F12  |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |   #  |   $  |   (  |   )  |   `  |------|           |------| Down |   4  |   5  |   6  |   +  |        |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |   %  |   ^  |   [  |   ]  |   ~  |      |           |      |   &  |   1  |   2  |   3  |   \  |        |
- * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |      |      |      |      |      |                                       |      |    . |   0  |   =  |      |
- *   `----------------------------------'                                       `----------------------------------'
- *                                        ,-------------.       ,-------------.
- *                                        |      |      |       |      |      |
- *                                 ,------|------|------|       |------+------+------.
- *                                 |      |      |      |       |      |      |      |
- *                                 |      |      |------|       |------|      |      |
- *                                 |      |      |      |       |      |      |      |
- *                                 `--------------------'       `--------------------'
- */
-// SYMBOLS
-[QWERTY_SYMB] = KEYMAP(
-       // left hand
-       KC_TRNS,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_TRNS,
-       KC_TRNS,KC_EXLM,KC_AT,  KC_LCBR,KC_RCBR,KC_PIPE,KC_TRNS,
-       KC_TRNS,KC_HASH,KC_DLR, KC_LPRN,KC_RPRN,KC_GRV,
-       KC_TRNS,KC_PERC,KC_CIRC,KC_LBRC,KC_RBRC,KC_TILD,KC_TRNS,
-       KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
-                                       KC_TRNS,KC_TRNS,
-                                               KC_TRNS,
-                               KC_TRNS,KC_TRNS,KC_TRNS,
-       // right hand
-       KC_TRNS, KC_F6,   KC_F7,  KC_F8,   KC_F9,   KC_F10,  KC_F11,
-       KC_TRNS, KC_UP,   KC_7,   KC_8,    KC_9,    KC_ASTR, KC_F12,
-                KC_DOWN, KC_4,   KC_5,    KC_6,    KC_PLUS, KC_TRNS,
-       KC_TRNS, KC_AMPR, KC_1,   KC_2,    KC_3,    KC_BSLS, KC_TRNS,
-                         KC_TRNS,KC_DOT,  KC_0,    KC_EQL,  KC_TRNS,
-       KC_TRNS, KC_TRNS,
-       KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_TRNS
-),
 };
 
 const uint16_t PROGMEM fn_actions[] = {
@@ -250,127 +190,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
   // MACRODOWN only works in this function
   switch(id) {
-  case QCOPY:
-    if (record->event.pressed) {
-      return MACRO(I(255),
-                   D(LCTRL),
-                   T(C),
-                   D(LSFT),
-                   T(C),
-                   U(LCTRL),
-                   U(LSFT),
-                   END);
-    }
-    break;
-  case QPASTE:
-    if (record->event.pressed) {
-      return MACRO(I(255),
-                   D(LCTRL),
-                   D(LSFT),
-                   T(V),
-                   U(LCTRL),
-                   T(INS),
-                   U(LSFT),
-                   END);
-    }
-    break;
-  case M_ACIRC:
-    if (record->event.pressed) {
-      return MACRO(T(LBRC), // FR_CIRC
-                   T(Q), // FR_A
-                   END);
-    }
-    break;
-  case M_ECIRC:
-    if (record->event.pressed) {
-      return MACRO(T(LBRC), // FR_CIRC
-                   T(E),
-                   END);
-    }
-    break;
-  case M_UCIRC:
-    if (record->event.pressed) {
-      return MACRO(T(LBRC), // FR_CIRC
-                   T(U),
-                   END);
-    }
-    break;
-  case M_ICIRC:
-    if (record->event.pressed) {
-      return MACRO(T(LBRC), // FR_CIRC
-                   T(I),
-                   END);
-    }
-    break;
-  case M_OCIRC:
-    if (record->event.pressed) {
-      return MACRO(T(LBRC), // FR_CIRC
-                   T(O),
-                   END);
-    }
-    break;
-  case M_YCIRC:
-    if (record->event.pressed) {
-      return MACRO(T(LBRC), // FR_CIRC
-                   T(Y),
-                   END);
-    }
-    break;
-  case M_AUMLT:
-    if (record->event.pressed) {
-      return MACRO(D(LSFT),
-                   T(LBRC),
-                   U(LSFT),
-                   T(Q),
-                   END);
-    }
-    break;
-  case M_EUMLT:
-    if (record->event.pressed) {
-      return MACRO(D(LSFT),
-                   T(LBRC),
-                   U(LSFT),
-                   T(E),
-                   END);
-    }
-    break;
-  case M_UUMLT:
-    if (record->event.pressed) {
-      return MACRO(D(LSFT),
-                   T(LBRC),
-                   U(LSFT),
-                   T(U),
-                   END);
-    }
-    break;
-  case M_IUMLT:
-    if (record->event.pressed) {
-      return MACRO(D(LSFT),
-                   T(LBRC),
-                   U(LSFT),
-                   T(I),
-                   END);
-    }
-    break;
-  case M_OUMLT:
-    if (record->event.pressed) {
-      return MACRO(D(LSFT),
-                   T(LBRC),
-                   U(LSFT),
-                   T(O),
-                   END);
-    }
-    break;
-  case M_YUMLT:
-    if (record->event.pressed) {
-      return MACRO(D(LSFT),
-                   T(LBRC),
-                   U(LSFT),
-                   T(Y),
-                   END);
-    }
-    break;
-
   }
   return MACRO_NONE;
 };
