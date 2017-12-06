@@ -13,9 +13,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Base Colemak Mod-DH layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * | Esc    |   1  |   2  |   3  |   4  |   5  |      |           |      |   6  |   7  |   8  |   9  |   0  |        |
+ * | Esc    |   1  |   2  |   3  |   4  |   5  | LEFT |           | RIGHT|   6  |   7  |   8  |   9  |   0  |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |        |   Q  |   W  |   F  |   P  |   B  | TO(0)|           |TO(2) |   J  |   L  |   U  |   Y  |   ;  |        |
+ * |        |   Q  |   W  |   F  |   P  |   B  | TO(0)|           |TO(2) |   J  |   L  |   U  |   Y  |   ;  | Del    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | Tab    |   A  |   R  |   S  |   T  |   G  |------|           |------|   M  |   N  |   E  |   I  |   O  | Bcksp  |
  * |--------+------+------+------+------+------| TO(1)|           |TG(3) |------+------+------+------+------+--------|
@@ -24,7 +24,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   | Ins  | Caps | Left | Right| MO(1)|                                       | MO(1)| Down |  Up  | PgDn | PgUp  |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        | App  | LGui |       | Alt  | LGui   |
+ *                                        | Tmx  | Cslt |       | RAlt | LGui   |
  *                                 ,------|------|------|       |------+--------+------.
  *                                 |      |      | Home |       | End  |        |      |
  *                                 | Space| Back |------|       |------| Ctrl   |Enter |
@@ -35,22 +35,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Otherwise, it needs KC_*
 [BASE] = KEYMAP(  // layer 0 : default
         // left hand
-        KC_ESC,         KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   KC_TRNS,
+KC_ESC,         KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   KC_LEFT,
         KC_TRNS,        KC_Q,         KC_W,   KC_F,   KC_P,   KC_B,   TO(BASE),
         KC_TAB,         KC_A,         KC_R,   KC_S,   KC_T,   KC_G,
         KC_LSFT,        KC_Z,         KC_X,   KC_C,   KC_D,   KC_V,   TO(SYMB),
         KC_INS,         KC_CAPS,      KC_LEFT,KC_RIGHT, MO(SYMB),
-                                               ALT_T(KC_APP),  KC_LGUI,
+                                               RCTL(KC_B),  LALT(KC_LSFT),
                                                                   KC_HOME,
                                                KC_SPC, KC_BSPC,   ALL_T(KC_NO),
         // right hand
-        KC_TRNS,     KC_6,    KC_7,   KC_8,     KC_9,    KC_0,             KC_TRNS,
-        TO(MDIA),    KC_J,    KC_L,   KC_U,     KC_Y,    KC_SCLN,          KC_TRNS,
+        KC_RGHT,     KC_6,    KC_7,   KC_8,     KC_9,    KC_0,             KC_TRNS,
+        TO(MDIA),    KC_J,    KC_L,   KC_U,     KC_Y,    KC_SCLN,          KC_DELT,
                      KC_M,    KC_N,   KC_E,     KC_I,    KC_O,             KC_BSPC,
         TG(QWERTY),    KC_K,    KC_H,   KC_COMM,  KC_DOT,  KC_COLN,          KC_RSFT,
         MO(SYMB),    KC_DOWN, KC_UP,  KC_PGDN,  KC_PGUP,
 
-        KC_LALT,        KC_LGUI,
+        KC_RALT,        KC_LGUI,
         KC_END,
         MEH_T(KC_NO),KC_RCTL, KC_ENT
                   ),
